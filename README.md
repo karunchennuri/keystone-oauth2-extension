@@ -1,5 +1,5 @@
 # keystone-oauth2-extension
-OpenStack Keystone extension to enable OAuth 2.0.
+OpenStack Keystone extension to enable OAuth 2.0. This particular build now supports Liberty version.
 
 ## How to Install
 To install this extension in Keystone, you have to do the following:
