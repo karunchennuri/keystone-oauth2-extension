@@ -18,7 +18,7 @@ from keystone.common import sql
 from keystone.contrib import oauth2
 from keystone import exception
 from keystone.i18n import _
-from oslo.utils import timeutils
+from oslo_utils import timeutils
 
 # TODO(garcianavalon) configuration options
 VALID_RESPONSE_TYPES = sql.Enum('code', 'token')
