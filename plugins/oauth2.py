@@ -19,12 +19,13 @@ from keystone.common import dependency
 from keystone.contrib.oauth2 import core as oauth2_core
 from keystone.contrib.oauth2 import validator
 from keystone.i18n import _
-from keystone.openstack.common import log
-
+# Commented to use oslo_log
+#from keystone.openstack.common import log
+from oslo_log import log
 
 LOG = log.getLogger(__name__)
 
-@dependency.optional('oauth2_api')
+@dependency.requires('oauth2_api')
 class OAuth2(auth.AuthMethodHandler):
 
     method = 'oauth2'
