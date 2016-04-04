@@ -22,7 +22,9 @@ from keystone import notifications
 from keystone.common import dependency
 from keystone.common import extension
 from keystone.common import manager
-from keystone.openstack.common import log
+# Commented to use oslo_log
+# from keystone.openstack.common import log
+from oslo_log import log 
 
 from oauthlib import oauth2 as oauth2lib
 
@@ -120,6 +122,8 @@ class Manager(manager.Manager):
     how this dynamically calls the backend.
 
     """
+    driver_namespace = 'keystone.oauth2'
+
     _CONSUMER = 'consumer_oauth2'
 
     def __init__(self):
@@ -129,8 +133,8 @@ class Manager(manager.Manager):
     # TODO(garcianavalon) revoke tokens on consumer delete
     # TODO(garcianavalon) revoke Identity tokens issued by an access token on token revokation
     
-    
-    @notifications.deleted(_CONSUMER)
+    # To support Liberty onwards
+    # @notifications.deleted(_CONSUMER)
     def delete_consumer(self, consumer_id):
         ret_val = self.driver.delete_consumer(consumer_id)
         
@@ -145,7 +149,8 @@ class Manager(manager.Manager):
 
         return ret_val
 
-    @notifications.updated(_CONSUMER)
+    # To support Liberty onwards
+    # @notifications.updated(_CONSUMER)
     def update_consumer(self, consumer_id, consumer_ref):
         ret_val = self.driver.update_consumer(consumer_id, consumer_ref)
         # TODO(garcianavalon) also delete on scopes or grant_type changes
@@ -160,7 +165,7 @@ class Manager(manager.Manager):
 
         # and the issued tokens
         self.driver.delete_access_tokens(consumer_id)
-
+	
         return ret_val
 
 

@@ -17,10 +17,12 @@ import datetime
 from keystone import exception
 from keystone.auth import plugins as auth_plugins
 from keystone.common import dependency
-from keystone.openstack.common import log
+# Commented to use oslo_log                                                                           
+# from keystone.openstack.common import log                                                            
+from oslo_log import log
 from oauthlib.oauth2 import RequestValidator
 
-from oslo.utils import timeutils
+from oslo_utils import timeutils
 
 METHOD_NAME = 'oauth2_validator'
 LOG = log.getLogger(__name__)
